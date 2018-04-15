@@ -8,4 +8,8 @@ data class User(
         @Id val emailAddress: String,
         val firstName: String,
         val lastName: String
-)
+) {
+    fun toDto(): com.squareup.app.model.User {
+        return com.squareup.app.model.User(emailAddress, firstName, lastName)
+    }
+}

@@ -1,3 +1,7 @@
 package com.squareup.app.model
 
-data class User(val id: Long, val name: String)
+import com.fasterxml.jackson.annotation.JsonCreator
+
+data class User @JsonCreator constructor(val emailAddress: String, val firstName: String, val lastName: String) {
+    fun toDao(): com.squareup.app.dao.User = com.squareup.app.dao.User(emailAddress, firstName, lastName)
+}
