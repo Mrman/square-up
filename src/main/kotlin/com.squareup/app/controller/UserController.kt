@@ -1,4 +1,4 @@
-package com.squareup.app.controllers
+package com.squareup.app.controller
 
 import com.squareup.app.model.User
 import org.springframework.web.bind.annotation.GetMapping
