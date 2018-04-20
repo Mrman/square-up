@@ -1,4 +1,7 @@
 db.user.createIndex(
-   { _emailExists: 1 },
-   { partialFilterExpression: { emailAddress: { $exists: true } } }
+    { "emailAddress": 1 },
+    {
+        "unique": true,
+        "partialFilterExpression": { "emailAddress": { "$exists": true } }
+    }
 )
