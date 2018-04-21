@@ -3,11 +3,6 @@ spring:
     mongodb:
       database: squareup
 
-  social:
-    facebook:
-      app-id: 1560055450772174
-      app-secret: #supplied by system property at runtime
-
 debug: false
 
 squareup:
@@ -18,4 +13,9 @@ squareup:
       refreshTokenExpTime: 60 #Days
       tokenIssuer: http://localhost:8080 #prod=https://squareup-api.herokuapp.com
       corsAllowedOrigin: http://localhost:9000
+  facebook:
+    facebookApiUrl: graph.facebook.com
+    facebookApiVersion: v2.12
+    appId: 1560055450772174
+    appSecret: #supplied by system property at runtime through -Dsquareup.facebook.appSecret
 

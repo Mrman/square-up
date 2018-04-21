@@ -1,0 +1,18 @@
+#mongo is configured through Heroku properties
+
+debug: false
+
+squareup:
+  security:
+    jwt:
+      tokenSigningKey: #passed via system property for production (node -e "console.log(require('crypto').randomBytes(56).toString('base64'));")
+      tokenExpirationTime: 30 #Days
+      refreshTokenExpTime: 60 #Days
+      tokenIssuer: https://squareup-api.herokuapp.com
+      corsAllowedOrigin: https://square-up.co.uk
+  facebook:
+    facebookApiUrl: graph.facebook.com
+    facebookApiVersion: v2.12
+    appId: 348931282261518
+    appSecret: #supplied by system property at runtime through -Dsquareup.facebook.appSecret
+

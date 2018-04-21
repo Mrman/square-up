@@ -12,6 +12,10 @@ class JwtHeaderTokenExtractor : TokenExtractor {
             throw AuthenticationServiceException("Authorization header cannot be blank!")
         }
 
+        if (!payload.startsWith(HEADER_PREFIX)) {
+            throw AuthenticationServiceException("Authorization header must start with '${HEADER_PREFIX}'");
+        }
+
         if (payload.length < HEADER_PREFIX.length) {
             throw AuthenticationServiceException("Invalid authorization header size.")
         }
