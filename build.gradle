@@ -31,5 +31,6 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.springframework.boot:spring-boot-starter-web:$spring_boot_version"
     compile "org.springframework.boot:spring-boot-starter-data-mongodb:$spring_boot_version"
+    compile "org.springframework.boot:spring-boot-starter-security:$spring_boot_version"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
 }

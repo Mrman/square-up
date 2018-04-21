@@ -3,7 +3,12 @@ spring:
     mongodb:
       database: squareup
 
-debug: true
+  social:
+    facebook:
+      app-id: 1560055450772174
+      app-secret: #supplied by system property at runtime
+
+debug: false
 
 squareup:
   security:
