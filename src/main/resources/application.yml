@@ -13,6 +13,6 @@ squareup:
   facebook:
     facebookApiUrl: graph.facebook.com
     facebookApiVersion: v2.12
-    appId: 348931282261518
+    appId: 1560055450772174 #Using dev Id for now as Facebook is read-only due to Platform updates 348931282261518
     appSecret: #supplied by system property at runtime through -Dsquareup.facebook.appSecret
 
