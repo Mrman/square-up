@@ -1,0 +1,16 @@
+spring:
+  data:
+    mongodb:
+      database: squareup
+
+debug: true
+
+squareup:
+  security:
+    jwt:
+      tokenSigningKey: J+3l+9V5xT1MPIoDNTNrMOa8V+xLnPCFPTeR9N14Xtxp+J3QxZK5wCWAziHnArXcvEK3Ue9740o= #passed via system property for production (node -e "console.log(require('crypto').randomBytes(56).toString('base64'));")
+      tokenExpirationTime: 30 #Days
+      refreshTokenExpTime: 60 #Days
+      tokenIssuer: http://localhost:8080 #prod=https://squareup-api.herokuapp.com
+      corsAllowedOrigin: http://localhost:9000
+
