@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.client.RestTemplate
-import org.springframework.web.util.UriComponentsBuilder
 
 @Service
 class FacebookTokenVerificationServiceImpl @Autowired
@@ -30,7 +29,7 @@ constructor(
     }
 
     private fun verifyAccessTokenAgainstFacebook(accessToken: String): FacebookAccessTokenData {
-        val verifyTokenUri = facebookApiUriBuilder()
+        val verifyTokenUri = facebookConfiguration.facebookApiUriBuilder()
                 .pathSegment(VERIFY_PATH)
                 .queryParam("input_token", accessToken)
                 .queryParam("access_token", "${facebookConfiguration.appId}|${facebookConfiguration.appSecret}")
@@ -46,7 +45,7 @@ constructor(
     }
 
     private fun convertToLongTermToken(accessToken: String): String {
-        val exchangeTokenUri = facebookApiUriBuilder()
+        val exchangeTokenUri = facebookConfiguration.facebookApiUriBuilder()
                 .pathSegment(ACCESS_TOKEN_PATH)
                 .queryParam("grant_type", "fb_exchange_token")
                 .queryParam("client_id", facebookConfiguration.appId)
@@ -63,10 +62,7 @@ constructor(
         }
     }
 
-    private fun facebookApiUriBuilder() = UriComponentsBuilder.newInstance()
-            .scheme("https")
-            .host(facebookConfiguration.facebookApiUrl)
-            .pathSegment(facebookConfiguration.facebookApiVersion)
+
 
     companion object {
         private const val VERIFY_PATH = "debug_token"
