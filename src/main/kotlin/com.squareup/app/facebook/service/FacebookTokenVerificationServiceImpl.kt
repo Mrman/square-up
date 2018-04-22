@@ -28,11 +28,10 @@ constructor(
         return AssociatedAccount(AccountType.FACEBOOK, fbAccessTokenData.userId!!, longTermToken)
     }
 
-    private fun verifyAccessTokenAgainstFacebook(accessToken: String): FacebookAccessTokenData {
-        val verifyTokenUri = facebookConfiguration.facebookApiUriBuilder()
+    private fun verifyAccessTokenAgainstFacebook(inputUserToken: String): FacebookAccessTokenData {
+        val verifyTokenUri = facebookConfiguration.facebookApiUriBuilder("${facebookConfiguration.appId}|${facebookConfiguration.appSecret}")
                 .pathSegment(VERIFY_PATH)
-                .queryParam("input_token", accessToken)
-                .queryParam("access_token", "${facebookConfiguration.appId}|${facebookConfiguration.appSecret}")
+                .queryParam("input_token", inputUserToken)
                 .build().toUri()
 
         val response = template.getForEntity(verifyTokenUri, FacebookAccessTokenData::class.java)

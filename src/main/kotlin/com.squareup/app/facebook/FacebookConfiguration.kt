@@ -12,6 +12,8 @@ class FacebookConfiguration {
     lateinit var facebookApiUrl: String
     lateinit var facebookApiVersion: String
 
+    fun facebookApiUriBuilder(accessToken: String): UriComponentsBuilder = facebookApiUriBuilder().queryParam("access_token", accessToken)
+
     fun facebookApiUriBuilder(): UriComponentsBuilder = UriComponentsBuilder.newInstance()
             .scheme("https")
             .host(facebookApiUrl)

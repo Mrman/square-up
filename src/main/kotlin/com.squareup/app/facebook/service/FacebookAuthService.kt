@@ -1,5 +1,6 @@
 package com.squareup.app.facebook.service
 
+import com.squareup.app.facebook.model.FacebookUser
 import com.squareup.app.facebook.model.FacebookUserField
 import com.squareup.app.security.auth.jwt.extractor.TokenExtractor
 import org.slf4j.LoggerFactory
@@ -14,10 +15,12 @@ class FacebookAuthService @Autowired constructor(
 ) {
     private val logger = LoggerFactory.getLogger(FacebookAuthService::class.java)
 
-    fun processFacebookToken(token: String) {
+    fun processFacebookToken(token: String): FacebookUser {
         val fbUserAccessToken = tokenExtractor.extract(token)
         val associatedAccount = tokenVerificationService.verify(fbUserAccessToken)
-        facebookDataService.getUserProfile(associatedAccount.token, associatedAccount.identifier, FacebookUserField.EMAIL, FacebookUserField.FIRST_NAME, FacebookUserField.LAST_NAME)
+        return facebookDataService.getUserProfile(associatedAccount.token, associatedAccount.identifier,
+                FacebookUserField.EMAIL, FacebookUserField.FIRST_NAME, FacebookUserField.LAST_NAME
+        )
 
 
 //        val facebookTemplate = FacebookTemplate(extractedToken, null, "1560055450772174")
