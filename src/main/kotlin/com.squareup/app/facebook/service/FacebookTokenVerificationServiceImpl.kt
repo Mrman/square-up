@@ -17,21 +17,16 @@ import org.springframework.web.util.UriComponentsBuilder
 @Service
 class FacebookTokenVerificationServiceImpl @Autowired
 constructor(
-        private val facebookConfiguration: FacebookConfiguration,
-        private val facebookDataService: FacebookDataService
+        private val facebookConfiguration: FacebookConfiguration
 ) : TokenVerificationService {
 
     private val template = RestTemplate()
 
     @Transactional
-    override fun verify(token: String): String {
+    override fun verify(token: String): AssociatedAccount {
         val fbAccessTokenData = verifyAccessTokenAgainstFacebook(token).data
         val longTermToken = convertToLongTermToken(token)
-        val userToken = AssociatedAccount(AccountType.FACEBOOK, fbAccessTokenData.userId!!, longTermToken)
-//        val username = facebookDataService.getUserProfile(userToken), {Field.EMAIL}).getEmail()
-//        userToken.setUsername(username)
-//        userTokenRepository.save(userToken)
-        return fbAccessTokenData.userId!!
+        return AssociatedAccount(AccountType.FACEBOOK, fbAccessTokenData.userId!!, longTermToken)
     }
 
     private fun verifyAccessTokenAgainstFacebook(accessToken: String): FacebookAccessTokenData {
