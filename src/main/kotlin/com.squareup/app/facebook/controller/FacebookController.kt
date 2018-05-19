@@ -1,8 +1,7 @@
 package com.squareup.app.facebook.controller
 
-import com.squareup.app.facebook.model.FacebookUser
-import com.squareup.app.model.User
 import com.squareup.app.facebook.service.FacebookAuthService
+import com.squareup.app.model.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.PostMapping
@@ -16,9 +15,8 @@ class FacebookController @Autowired constructor(
         val facebookAuthService: FacebookAuthService
 ) {
     @PostMapping(value = ["/login"], produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun facebookLogin(@RequestHeader("FB-Access-Token") facebookTokenHeader: String): FacebookUser {
-        return facebookAuthService.processFacebookToken(facebookTokenHeader)
-//        return User("emailAddress", "John", "Simpson")
+    fun facebookLogin(@RequestHeader("FB-Access-Token") facebookTokenHeader: String): User {
+        return facebookAuthService.processFacebookToken(facebookTokenHeader).toDto()
     }
 
     fun verifyToken(facebookAccessToken: String) {

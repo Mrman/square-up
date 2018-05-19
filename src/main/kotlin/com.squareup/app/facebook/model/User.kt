@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter
 import com.fasterxml.jackson.annotation.JsonAnySetter
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class FacebookUser (
+data class User (
         @JsonProperty(FacebookUserField.RawFieldNames.USER_ID) val facebookId: String,
         @JsonProperty(FacebookUserField.RawFieldNames.FIRST_NAME) val firstName: String,
         @JsonProperty(FacebookUserField.RawFieldNames.LAST_NAME) val lastName: String,
